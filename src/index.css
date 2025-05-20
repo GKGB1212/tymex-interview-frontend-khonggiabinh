@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +11,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.footer-wave {
+  opacity: 80%;
+  width: 100%;
+  aspect-ratio: 2624 / 618;
+  background: url('./assets/images/svgs/backgrounds/neon-mesh.svg') no-repeat center;
+  background-size: cover;
 }
 
 a {
