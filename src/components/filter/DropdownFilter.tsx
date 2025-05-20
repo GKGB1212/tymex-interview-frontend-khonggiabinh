@@ -3,7 +3,6 @@ import {
   FormControl,
   Select,
   MenuItem,
-  type SelectChangeEvent,
   styled,
   Typography,
   useTheme,
@@ -19,7 +18,7 @@ interface DropdownFilterProps {
   label: string;
   value: string;
   options: DropdownOption[];
-  onChange: (event: SelectChangeEvent) => void;
+  onChange: (event: any) => void;
 }
 
 const CustomSelect = styled(Select)(({ theme }) => ({

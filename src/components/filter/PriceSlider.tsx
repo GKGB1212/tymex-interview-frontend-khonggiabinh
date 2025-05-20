@@ -71,9 +71,7 @@ const PriceSlider: React.FC<PriceSliderProps> = ({
       />
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography>{value[0]} ETH</Typography>
-        <Box sx={{ color: '#fff', px: 1, py: 0.5, borderRadius: 1 }}>
-          {value[1]} ETH
-        </Box>
+        <Typography>{value[1]} ETH</Typography>
       </Box>
     </Box>
   );
