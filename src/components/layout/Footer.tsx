@@ -1,10 +1,10 @@
-import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Stack, TextField, Typography, useTheme } from '@mui/material';
 import { MailboxIcon, PhoneIcon } from '@phosphor-icons/react';
-import Container from './Container';
 
 export default function Footer() {
+  const theme = useTheme();
   return (
-    <Box sx={{ bgcolor: '#17161A', color: '#fff', py: { xs: 6, md: 8 } }}>
+    <Box sx={{ bgcolor: theme.palette.custom.neutral1, color: '#fff', py: { xs: 6, md: 8 } }}>
       <Container>
         <Grid
           container
@@ -12,8 +12,7 @@ export default function Footer() {
           alignItems="start"
           textAlign={{ xs: 'center', md: 'left' }}
         >
-          {/* NAVIGATION */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }} >
             <Typography
               variant="h6"
               sx={{
@@ -31,7 +30,7 @@ export default function Footer() {
                 ['Whitepaper', 'Marketplace', 'Roadmap'],
                 ['FAQs', 'News', 'Community']
               ].map((column, idx) => (
-                <Grid item xs={4} key={idx}>
+                <Grid size={4} key={idx}>
                   <Stack spacing={1}>
                     {column.map((item) => (
                       <Typography key={item} variant="body1">
@@ -45,7 +44,7 @@ export default function Footer() {
           </Grid>
 
           {/* CONTACT US */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{xs:12, md:4}}>
             <Typography
               variant="h6"
               sx={{
@@ -70,7 +69,7 @@ export default function Footer() {
           </Grid>
 
           {/* SUBSCRIBE */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{xs:12, md:4}}>
             <Typography
               variant="h6"
               sx={{
@@ -103,7 +102,7 @@ export default function Footer() {
               <Button
                 variant="contained"
                 sx={{
-                  background: 'linear-gradient(91.47deg, #DA458F -6%, #DA34DD 113.05%)',
+                  background: theme.palette.custom.primaryGradient,
                   color: '#fff',
                   textTransform: 'none',
                   px: 4,
@@ -126,12 +125,12 @@ export default function Footer() {
             spacing={2}
             direction={{ xs: 'column', md: 'row' }}
           >
-            <Grid item>
+            <Grid>
               <Typography variant="body2" textAlign={{ xs: 'center', md: 'left' }}>
                 ©2023 Tyme - Edit. All Rights reserved.
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid>
               <Stack
                 direction="row"
                 spacing={4}
@@ -147,6 +146,6 @@ export default function Footer() {
           </Grid>
         </Box>
       </Container>
-    </Box>
+    </Box >
   );
 }

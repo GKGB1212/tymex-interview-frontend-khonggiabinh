@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Card, CardMedia, styled } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, Card, CardMedia, styled, useTheme, Container } from '@mui/material';
 import { motion } from 'framer-motion';
-import NewArrivalCard from './NewArrivalCard';
-import { fetchNewArrivals } from '../services/api';
-import type { IProduct } from '../types/product';
+import NewArrivalCard from '../arrival/NewArrivalCard';
+import { fetchNewArrivals } from '../../services/api';
+import type { IProduct } from '../../types/product';
 import backgroundSvg from '../assets/images/backgrounds/yellow-bg.png';
 import newArrivalImg from '../assets/svgs/backgrounds/new-arrival.svg';
 import mainBackgroundImg from '../assets/images/backgrounds/main-bg.jpg'
 import theDJImage from '../assets/images/the-dj.png'
-import Container from './Container';
 import { CaretDownIcon, GlobeIcon } from '@phosphor-icons/react';
 
 const headerButtons = [
@@ -22,7 +21,7 @@ const headerButtons = [
 
 const CustomButton = styled(Button, {
     shouldForwardProp: (prop) => prop !== 'isActive',
-})<{ isActive: boolean }>(({ isActive }) => ({
+})<{ isActive: boolean }>(({ isActive, theme }) => ({
     textTransform: 'uppercase',
     fontSize: 16,
     fontFamily:'DroneRangerPro',
@@ -31,13 +30,13 @@ const CustomButton = styled(Button, {
     backgroundColor: 'transparent',
     color: isActive ? 'transparent' : '#fff',
     background: isActive
-        ? 'linear-gradient(91.47deg, #DA458F -6%, #DA34DD 113.05%)'
+        ? theme.palette.custom.primaryGradient
         : 'none',
     backgroundClip: isActive ? 'text' : 'unset',
     WebkitBackgroundClip: isActive ? 'text' : 'unset',
     '&:hover': {
         color: 'transparent',
-        background: 'linear-gradient(91.47deg, #DA458F -6%, #DA34DD 113.05%)',
+        background: theme.palette.custom.primaryGradient,
         backgroundClip: 'text',
         WebkitBackgroundClip: 'text',
     },
@@ -53,7 +52,7 @@ const CustomButton = styled(Button, {
         width: '16px',
         height: '2px', 
         background: isActive
-            ? 'linear-gradient(91.47deg, #DA458F -6%, #DA34DD 113.05%)' 
+            ? theme.palette.custom.primaryGradient
             : 'transparent',
         transition: 'background 0.3s ease',
     },
@@ -61,6 +60,7 @@ const CustomButton = styled(Button, {
 }));
 
 export default function Header() {
+    const theme=useTheme();
     const [newArrivals, setNewArrivals] = useState<IProduct[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -89,20 +89,10 @@ export default function Header() {
             backgroundPosition: 'center',
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mainBackgroundImg})`,
         }}>
-            {/* Navigation Bar */}
             <AppBar position="static" sx={{ background: 'rgba(23, 22, 26, 0.7)', boxShadow: 'none' }}>
                 <Container>
                     <Toolbar sx={{ justifyContent: 'space-between' }}>
-                        {/* <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                            Tyme NFT
-                        </Typography> */}
                         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 5, fontWeight: 'bold' }}>
-                            {/* <Button color="inherit">Home</Button>
-                            <Button color="inherit">About Us</Button>
-                            <Button color="inherit">Our Teams</Button>
-                            <Button color="inherit" sx={{ color: 'linear-gradient(91.47deg, #DA458F -6%, #DA34DD 113.05%)' }}>Marketplace</Button>
-                            <Button color="inherit">Roadmap</Button>
-                            <Button color="inherit">Whitepaper</Button> */}
                             {headerButtons.map((button) => (
                                 <CustomButton
                                     key={button}
@@ -113,7 +103,7 @@ export default function Header() {
                             ))}
                         </Box>
                         <Box sx={{ display: 'flex' }}>
-                            <Button variant="contained" sx={{ background: 'linear-gradient(91.47deg, #DA458F -6%, #DA34DD 113.05%)', fontWeight: 'bold', boxShadow: '0px 0px 50px 0px #BB4BFF52',px:3, textTransform:'capitalize' }}>
+                            <Button variant="contained" sx={{ background: theme.palette.custom.primaryGradient, fontWeight: 'bold', boxShadow: '0px 0px 50px 0px #BB4BFF52',px:3, textTransform:'capitalize' }}>
                                 Connect Wallet
                             </Button>
                             <Button color="inherit"><GlobeIcon size={20} weight='fill' /><CaretDownIcon size={18} weight='bold' /></Button>
@@ -143,7 +133,7 @@ export default function Header() {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            sx={{ position: 'relative', zIndex: 1 }}
+                            style={{ position: 'relative', zIndex: 1 }}
                         >
                             <Card sx={{ maxWidth: 1100, backgroundColor: 'transparent', py: 7 }}>
                                 <CardMedia
