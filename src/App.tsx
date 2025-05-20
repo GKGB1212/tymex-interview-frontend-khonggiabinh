@@ -1,13 +1,20 @@
-import { useState } from 'react'
-import Home from './pages/home'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import './styles/font.css';
+import { ThemeProvider } from '@mui/material';
+import theme from './theme';
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
 
-      <Home/>
-  )
+  );
 }
 
-export default App
+export default App;
