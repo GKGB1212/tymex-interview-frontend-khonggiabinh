@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { IProduct } from '../types/product';
 
+
 interface FetchProductsParams {
   search?: string;
   title?: string;
@@ -15,7 +16,7 @@ interface FetchProductsParams {
   priceLte?:number;
 }
 
-const api = axios.create({ baseURL: 'https://tymex-mock-server-nodejs-1-0.onrender.com/' });
+const api = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL });
 
 export async function fetchProducts(params: FetchProductsParams = {}) {
   const { search, title, sort, order, page, limit, tier, theme, category, priceGte, priceLte } = params;
