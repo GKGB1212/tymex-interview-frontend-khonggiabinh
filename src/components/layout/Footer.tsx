@@ -6,11 +6,12 @@ export default function Footer() {
   return (
     <Box sx={{ bgcolor: theme.palette.custom.neutral1, color: '#fff', py: { xs: 6, md: 8 } }}>
       <Container>
-        <Grid
-          container
-          justifyContent={{ xs: 'center', md: 'space-between' }}
-          alignItems="start"
+        <Box
+        display={'flex'}
+        flexDirection={{xs:'column', lg:'row'}}
+          justifyContent={{ xs: 'space-between', md: 'space-between' }}
           textAlign={{ xs: 'center', md: 'left' }}
+          gap={{ xs: 8, lg: 0 }}
         >
           <Grid size={{ xs: 12, md: 4 }} >
             <Typography
@@ -44,7 +45,7 @@ export default function Footer() {
           </Grid>
 
           {/* CONTACT US */}
-          <Grid size={{xs:12, md:4}}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Typography
               variant="h6"
               sx={{
@@ -69,7 +70,7 @@ export default function Footer() {
           </Grid>
 
           {/* SUBSCRIBE */}
-          <Grid size={{xs:12, md:4}}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Typography
               variant="h6"
               sx={{
@@ -115,7 +116,7 @@ export default function Footer() {
               </Button>
             </Stack>
           </Grid>
-        </Grid>
+        </Box>
 
         <Box sx={{ borderTop: '1px solid #333', mt: 6, pt: 4 }}>
           <Grid
